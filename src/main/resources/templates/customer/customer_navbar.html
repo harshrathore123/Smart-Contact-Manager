@@ -1,0 +1,43 @@
+<nav th:fragment="navbar"
+     class="customer-navbar">
+
+    <div class="customer-navbar-inner">
+
+        <!-- BRAND -->
+        <a class="customer-brand" th:href="@{/}">
+            Smart Contact Manager
+        </a>
+
+        <!-- MOBILE MENU BUTTON -->
+        <input type="checkbox"
+               id="customer-menu-toggle"
+               class="customer-menu-toggle">
+
+        <label for="customer-menu-toggle"
+               class="customer-menu-button">
+            ☰
+        </label>
+
+        <!-- NAVIGATION -->
+        <div class="customer-nav-menu">
+
+            <a class="customer-nav-link"
+               th:href="@{/customer/data}">
+                Home
+            </a>
+
+            <span class="customer-nav-link customer-user">
+                <span class="user-dot">•</span>
+                <span th:text="${user.name}">User</span>
+            </span>
+
+            <a class="customer-nav-link"
+               th:href="@{/logout}">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>

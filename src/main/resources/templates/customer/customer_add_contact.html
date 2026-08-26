@@ -1,0 +1,192 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{customer/base :: layout(~{::section})}">
+
+<body>
+
+	<section class="customer-dashboard">
+
+		<div class="add-contact-page">
+
+
+			<div class="add-contact-card">
+
+				<div th:if="${message}" th:classappend="${message.type}"
+					class="alert"
+					style="width: 90%; margin: 0 auto 16px auto; padding: 14px 20px; border-radius: 6px; text-align: center; font-size: 15px; font-weight: 500; box-sizing: border-box;">
+
+					<p th:text="${message.content}" style="margin: 0; padding: 0;">
+					</p>
+
+				</div>
+
+				<!-- Header -->
+				<div class="add-contact-header">
+					<div class="add-contact-badge">ADD NEW CONTACT</div>
+
+					<h1>Add Contact</h1>
+
+					<p>Save a new contact to your personal contact manager.</p>
+				</div>
+
+
+				<!-- Form -->
+				<form th:action="@{/customer/process-contact}"
+					th:object="${contact}" method="post" enctype="multipart/form-data"
+					class="add-contact-form" novalidate>
+
+
+					<!-- Row 1 -->
+					<div class="contact-form-row">
+
+						<!-- Contact Name -->
+						<div class="contact-input-group">
+
+							<label>Contact Name</label>
+
+							<div class="input-wrapper">
+								<span class="contact-icon">+</span> <input type="text"
+									name="name" th:value="${contact.name}" class="form-control"
+									placeholder="Enter contact name">
+							</div>
+
+							<div class="invalid-feedback"
+								th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
+
+						</div>
+
+
+						<!-- Nick Name -->
+						<div class="contact-input-group">
+							<label>Nick Name</label>
+
+							<div class="input-wrapper">
+								<span class="contact-icon">●</span> <input
+									th:value="${contact.nickName}" type="text" name="nickName"
+									class="form-control" placeholder="Enter nick name">
+
+								<div class="invalid-feedback"
+									th:each="e: ${#fields.errors('nickName')}" th:text="${e}">
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+					<!-- Row 2 -->
+					<div class="contact-form-row">
+
+						<!-- Phone -->
+						<div class="contact-input-group">
+
+							<label>Contact Number</label>
+
+							<div class="input-wrapper">
+								<span class="contact-icon">☎</span> <input type="text"
+									name="phoneNumber" th:value="${contact.phoneNumber}"
+									class="form-control" placeholder="Enter contact number">
+							</div>
+
+							<div class="invalid-feedback"
+								th:each="e : ${#fields.errors('phoneNumber')}" th:text="${e}">
+							</div>
+
+						</div>
+
+
+						<!-- Email -->
+						<div class="contact-input-group">
+
+							<label>Email Address</label>
+
+							<div class="input-wrapper">
+								<span class="contact-icon">@</span> <input type="email"
+									name="email" th:value="${contact.email}" class="form-control"
+									placeholder="Enter email address">
+							</div>
+
+							<div class="invalid-feedback"
+								th:each="e : ${#fields.errors('email')}" th:text="${e}"></div>
+
+						</div>
+
+					</div>
+
+
+					<!-- Work -->
+					<div class="contact-input-group full-width">
+
+						<label>Work Experience</label>
+
+						<div class="input-wrapper">
+							<span class="contact-icon">▣</span> <input type="text"
+								name="work" th:value="${contact.work}" class="form-control"
+								placeholder="Enter work experience">
+						</div>
+
+						<!-- Validation Error -->
+						<div class="invalid-feedback"
+							th:each="e : ${#fields.errors('work')}" th:text="${e}"></div>
+
+					</div>
+
+
+					<!-- About -->
+					<!-- About -->
+					<!-- About -->
+					<div class="contact-textarea-group">
+
+						<label>About this Contact</label>
+
+						<textarea name="description" rows="5"
+							th:text="${contact.description}"
+							placeholder="Write something about this contact..."></textarea>
+
+						<!-- Description Error -->
+						<div th:if="${#fields.hasErrors('description')}"
+							th:errors="*{description}"
+							class="contact-error description-error"></div>
+
+					</div>
+
+
+					<!-- Profile Image -->
+					<div class="contact-file-group">
+
+						<div class="file-content">
+							<div class="file-icon">📷</div>
+
+							<div>
+								<strong>Profile Image</strong> <small> Upload a photo
+									for this contact </small>
+							</div>
+						</div>
+
+						<input type="file" id="profileImage" name="profileImage"
+							accept="image/*">
+
+					</div>
+
+
+					<!-- Buttons -->
+					<div class="contact-actions">
+
+						<button type="reset" class="contact-reset-btn">Clear</button>
+
+						<button type="submit" class="contact-submit-btn">
+							Add Contact <span>→</span>
+						</button>
+
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

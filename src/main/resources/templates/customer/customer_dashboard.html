@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{customer/base :: layout(~{::section})}">
+
+
+<body>
+
+
+    <section class="customer-dashboard">
+
+
+        <div class="dashboard-content">
+
+
+            <div class="dashboard-welcome">
+
+
+                <span class="welcome-small">
+                    WELCOME BACK
+                </span>
+
+
+                <h1>
+
+                    Hello,
+
+                    <span th:text="${user.name}">
+                        User
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Manage your contacts easily with
+                    Smart Contact Manager.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</body>
+
+</html>

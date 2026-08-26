@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{fragment/base :: layout(~{::section})}">
+
+<body>
+
+	<section class="signup-section">
+
+		<div class="signup-container">
+
+			<!-- Heading -->
+			<h1>Login</h1>
+
+			<!-- Login Message -->
+			<div class="login-message-area">
+
+				<div th:if="${param.error}" class="login-alert login-alert-error">
+					Invalid Username and Password</div>
+
+				<div th:if="${param.logout}" class="login-alert login-alert-success">
+					You have been logged out</div>
+
+			</div>
+
+
+			<!-- Login Form -->
+			<form th:action="@{/doLogin}" action="#" method="POST" novalidate>
+
+
+				<!-- Username -->
+				<div class="mb-4">
+
+					<label for="username" class="form-label"> Username: </label> <input
+						type="text" id="username" name="username" class="form-control"
+						placeholder="Enter username" required>
+
+				</div>
+
+
+				<!-- Password -->
+				<div class="mb-4">
+
+					<label for="password" class="form-label"> Password: </label> <input
+						type="password" id="password" name="password" class="form-control"
+						placeholder="Enter password" required>
+
+				</div>
+
+
+				<!-- OR Divider -->
+				<div class="login-divider">
+
+					<span></span> <strong>or</strong> <span></span>
+
+				</div>
+
+
+				<!-- Remember + Register -->
+				<div class="login-options">
+
+
+					<!-- Remember Me -->
+					<div class="remember-section">
+
+						<input type="checkbox" name="remember-me" class="form-check-input"
+							id="rememberMe"> <label for="rememberMe">
+
+							Remember me </label>
+
+					</div>
+
+
+					<!-- Vertical Divider -->
+					<div class="login-vertical-divider"></div>
+
+
+					<!-- Register -->
+					<div class="register-section">
+
+						<a th:href="@{/signup}"> <span class="register-icon"> <i
+								class="fa-regular fa-user"></i>
+						</span> <span class="register-text"> Register here </span> <span
+							class="register-arrow"> → </span>
+
+						</a>
+
+					</div>
+
+				</div>
+
+
+				<!-- Submit Button -->
+				<div class="login-buttons">
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+
+				</div>
+
+
+			</form>
+
+		</div>
+
+	</section>
+
+</body>
+</html>

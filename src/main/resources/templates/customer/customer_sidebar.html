@@ -1,0 +1,109 @@
+<!doctype html>
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <!-- SIDEBAR FRAGMENT -->
+    <div th:fragment="sidebar">
+
+        <!-- Sidebar Toggle -->
+        <input type="checkbox"
+               id="sidebar-toggle"
+               class="sidebar-toggle">
+
+        <!-- Sidebar Open Button -->
+        <label for="sidebar-toggle"
+               class="sidebar-open">
+            ☰
+        </label>
+
+        <!-- Sidebar -->
+        <aside class="customer-sidebar">
+
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+
+                <span>MENU</span>
+
+                <!-- Close Button -->
+                <label for="sidebar-toggle"
+                       class="sidebar-close">
+                    ×
+                </label>
+
+            </div>
+
+
+            <!-- Sidebar Menu -->
+            <div class="sidebar-menu">
+
+                <!-- HOME -->
+                <a th:href="@{/customer/data}"
+                   class="sidebar-item active">
+
+                    <span class="sidebar-icon">⌂</span>
+                    <span>Home</span>
+
+                </a>
+
+
+                <!-- VIEW CONTACTS -->
+                <a href="#"
+                   class="sidebar-item">
+
+                    <span class="sidebar-icon">▣</span>
+                    <span>View Contacts</span>
+
+                </a>
+
+
+                <!-- ADD CONTACT -->
+                <a th:href="@{/customer/addContact}"
+                   class="sidebar-item">
+
+                    <span class="sidebar-icon">✎</span>
+                    <span>Add Contact</span>
+
+                </a>
+
+
+                <!-- PROFILE -->
+                <a href="#"
+                   class="sidebar-item">
+
+                    <span class="sidebar-icon">●</span>
+                    <span>Your Profile</span>
+
+                </a>
+
+
+                <!-- SETTINGS -->
+                <a href="#"
+                   class="sidebar-item">
+
+                    <span class="sidebar-icon">⚙</span>
+                    <span>Settings</span>
+
+                </a>
+
+
+                <!-- LOGOUT -->
+                <a th:href="@{/logout}"
+                   class="sidebar-item sidebar-logout">
+
+                    <span class="sidebar-icon">↪</span>
+                    <span>Logout</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</body>
+
+</html>

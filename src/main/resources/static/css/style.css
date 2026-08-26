@@ -1,0 +1,1458 @@
+body {
+	background: #e2e2e2 !important;
+}
+
+.bg-primary {
+	background: rgba(0, 0, 0, 0.20) !important;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9999 !important;
+}
+
+.banner {
+	width: 100%;
+	height: 100vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+		url(../img/contactgirl.png);
+	background-size: cover;
+	background-position: center;
+	color: white;
+}
+
+.banner h1 {
+	font-size: 40px;
+	font-weight: 600;
+}
+
+.banner-text {
+	max-width: 550px;
+	margin: 0 auto 25px;
+	line-height: 1.6;
+}
+
+.banner-content {
+	width: 50%;
+	margin-right: 5%;
+}
+
+.navbar a {
+	color: #d8cfc4 !important;
+	transition: 0.3s ease;
+}
+
+.navbar a:hover {
+	color: #ffffff !important;
+}
+
+/* Signup Section */
+.signup-section {
+	position: relative;
+	z-index: 1;
+	min-height: 100vh;
+	box-sizing: border-box;
+	padding: 90px 0 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+		url(../img/contactgirl.png);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+/* Registration Form */
+.signup-container {
+	width: 420px;
+	padding: 30px 35px;
+	/* Transparent glass effect */
+	background: rgba(255, 255, 255, 0.12);
+	/* Glass blur */
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	/* Border */
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-radius: 12px;
+	/* Soft shadow */
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Remove image completely */
+.signup-image {
+	display: none;
+}
+
+/* Heading */
+.signup-container h1 {
+	text-align: center;
+	font-size: 36px;
+	font-weight: 500;
+	color: white;
+	margin-bottom: 25px;
+	text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Labels */
+.signup-container .form-label {
+	color: white;
+	font-size: 16px;
+	margin-bottom: 6px;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Inputs */
+.signup-container .form-control {
+	background: rgba(255, 255, 255, 0.85);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	font-size: 16px;
+	padding: 10px 12px;
+	border-radius: 6px;
+}
+
+.signup-container .form-control:focus {
+	background: rgba(255, 255, 255, 0.95);
+	border-color: #0d9ba5;
+	box-shadow: 0 0 0 3px rgba(13, 155, 165, 0.25);
+}
+
+/* Textarea */
+.signup-container textarea {
+	resize: none;
+}
+
+/* Buttons */
+.signup-buttons {
+	text-align: center;
+	margin-top: 15px;
+}
+
+.signup-buttons .btn {
+	font-size: 16px;
+	padding: 8px 20px;
+	margin: 0 3px;
+}
+
+/* Mobile */
+@media ( max-width : 576px) {
+	.signup-container {
+		width: 90%;
+		padding: 25px 20px;
+	}
+	.signup-container h1 {
+		font-size: 30px;
+	}
+}
+
+.terms-check {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 15px;
+}
+
+.terms-check .form-check-input {
+	margin: 0;
+}
+
+.terms-check .form-check-label {
+	margin: 0;
+}
+
+/* ================================
+   UNIQUE VALIDATION MESSAGE
+================================ */
+
+.invalid-feedback {
+    display: flex !important;
+    align-items: center;
+    gap: 7px;
+
+    width: fit-content;
+
+    margin-top: 7px;
+    padding: 5px 11px;
+
+    color: #ffd6d6 !important;
+    font-size: 13px;
+    font-weight: 500;
+
+    background: rgba(255, 70, 70, 0.12);
+    border: 1px solid rgba(255, 120, 120, 0.35);
+    border-radius: 20px;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 0 4px 15px rgba(255, 50, 50, 0.08);
+
+    animation: validationFade 0.25s ease-in-out;
+}
+
+/* Small warning icon */
+.invalid-feedback::before {
+    content: "!";
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 100, 100, 0.25);
+    border: 1px solid rgba(255, 150, 150, 0.5);
+
+    color: #ffdada;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Invalid input */
+.form-control.is-invalid {
+    border: 1px solid rgba(255, 120, 120, 0.65) !important;
+
+    background-image: none !important;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 80, 80, 0.08),
+        0 5px 20px rgba(255, 50, 50, 0.08) !important;
+}
+
+/* Input focus */
+.form-control.is-invalid:focus {
+    border-color: rgba(255, 150, 150, 0.9) !important;
+
+    box-shadow:
+        0 0 0 4px rgba(255, 100, 100, 0.12),
+        0 8px 25px rgba(255, 50, 50, 0.10) !important;
+}
+
+/* Animation */
+@keyframes validationFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* ================================
+   LOGIN PAGE
+================================ */
+
+
+/* --------------------------------
+   LOGIN MESSAGE
+-------------------------------- */
+
+.login-message-area {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.login-alert {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 9px 12px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    text-align: center;
+
+    color: white !important;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    animation: validationFade 0.25s ease-in-out;
+}
+
+
+/* Error */
+.login-alert-error {
+    background: rgba(220, 53, 69, 0.25);
+
+    border: 1px solid rgba(255, 120, 120, 0.55);
+
+    box-shadow:
+        0 4px 15px rgba(255, 50, 50, 0.10);
+}
+
+
+/* Logout */
+.login-alert-success {
+    background: rgba(25, 135, 84, 0.25);
+
+    border: 1px solid rgba(100, 220, 160, 0.55);
+
+    box-shadow:
+        0 4px 15px rgba(25, 135, 84, 0.10);
+}
+
+
+/* --------------------------------
+   OR DIVIDER
+-------------------------------- */
+
+.login-divider {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    margin: 2px 0 20px;
+}
+
+
+/* Lines */
+.login-divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.55);
+}
+
+
+/* OR */
+.login-divider strong {
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+    margin: 0 25px;
+
+    text-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+/* --------------------------------
+   REMEMBER + REGISTER
+-------------------------------- */
+
+.login-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 0 auto 20px;
+}
+
+
+/* --------------------------------
+   REMEMBER ME
+-------------------------------- */
+
+.remember-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+
+.remember-section .form-check-input {
+    width: 18px;
+    height: 18px;
+
+    margin: 0;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+}
+
+
+.remember-section label {
+    color: white !important;
+
+    font-size: 16px;
+
+    margin: 0;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+
+/* --------------------------------
+   VERTICAL DIVIDER
+-------------------------------- */
+
+.login-vertical-divider {
+    width: 1px;
+    height: 35px;
+
+    flex-shrink: 0;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    margin: 0 15px;
+}
+
+
+/* --------------------------------
+   REGISTER SECTION
+-------------------------------- */
+
+
+.register-section {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.register-section a {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    position: relative;
+
+    text-decoration: none;
+
+    color: #16a9d8 !important;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    padding-bottom: 7px;
+
+    white-space: nowrap;
+
+    transition: all 0.3s ease;
+}
+
+
+/* Register Icon */
+
+.register-icon {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    color: white;
+
+    font-size: 17px;
+}
+
+
+/* Arrow */
+
+.register-arrow {
+    font-size: 23px;
+
+    line-height: 20px;
+
+    margin-left: 2px;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* Underline */
+
+.register-section a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.75);
+}
+
+
+/* Hover */
+
+.register-section a:hover {
+    color: white !important;
+
+    text-shadow:
+        0 0 8px rgba(22, 169, 216, 0.8);
+}
+
+.register-section a:hover .register-arrow {
+    transform: translateX(5px);
+}
+
+/* --------------------------------
+   SUBMIT BUTTON
+-------------------------------- */
+
+.login-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-top: 15px;
+}
+
+
+.login-buttons .btn {
+
+    font-size: 16px;
+
+    padding: 8px 20px;
+
+    margin: 0 3px;
+
+    border-radius: 6px;
+}
+
+
+/* --------------------------------
+   MOBILE
+-------------------------------- */
+
+@media (max-width: 576px) {
+
+    .login-options {
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .remember-section,
+    .register-section {
+
+        min-width: auto;
+    }
+
+
+    .login-vertical-divider {
+
+        display: none;
+    }
+
+
+    .login-divider strong {
+
+        margin: 0 15px;
+    }
+}
+
+/* =========================================
+   CUSTOMER DASHBOARD
+========================================= */
+
+.customer-dashboard {
+    width: 100%;
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("../img/contactgirl.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: white;
+
+    padding-top: 70px;
+
+    box-sizing: border-box;
+}
+
+/* =========================================
+   NAVBAR MOBILE TOGGLE
+========================================= */
+
+.navbar-toggle {
+    display: none;
+}
+
+.navbar-menu-button {
+    display: none;
+}
+
+
+/* =========================================
+   MOBILE NAVBAR
+========================================= */
+
+@media (max-width: 768px) {
+
+    .customer-navbar {
+        height: 65px;
+    }
+
+    .customer-navbar .container-fluid {
+        position: relative;
+    }
+
+    .customer-navbar .navbar-brand {
+        font-size: 17px;
+    }
+
+    /* Navbar hamburger */
+
+    .navbar-menu-button {
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 42px;
+        height: 42px;
+
+        margin-left: auto;
+
+        color: white;
+
+        font-size: 25px;
+
+        cursor: pointer;
+
+        border-radius: 8px;
+
+        background: rgba(255,255,255,0.10);
+
+        border: 1px solid rgba(255,255,255,0.15);
+
+        transition: 0.3s ease;
+    }
+
+    .navbar-menu-button:hover {
+        background: rgba(255,255,255,0.18);
+    }
+
+
+    /* Hide navbar links initially */
+
+    .customer-navbar .navbar-collapse {
+
+        display: none;
+
+        position: absolute;
+
+        top: 65px;
+        left: 0;
+
+        width: 100%;
+
+        padding: 15px;
+
+        background: rgba(15,15,15,0.92);
+
+        backdrop-filter: blur(12px);
+
+        border-top: 1px solid rgba(255,255,255,0.10);
+    }
+
+
+    /* Open navbar */
+
+    .navbar-toggle:checked
+    ~ .navbar-collapse {
+
+        display: block;
+    }
+
+
+    .customer-navbar .navbar-nav {
+
+        flex-direction: column;
+
+        align-items: stretch !important;
+
+        gap: 5px;
+    }
+
+
+    .customer-navbar .nav-item {
+
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .customer-user {
+
+        justify-content: center;
+
+        margin: 5px auto;
+    }
+
+}
+
+/* =========================================
+   CUSTOMER NAVBAR
+========================================= */
+
+.customer-navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 70px;
+
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.30) !important;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.customer-navbar .navbar-brand {
+
+    color: #d8cfc4 !important;
+
+    font-size: 20px;
+
+    font-weight: 400;
+
+    text-decoration: none;
+
+    letter-spacing: 0.3px;
+
+    transition: 0.3s ease;
+}
+
+.customer-navbar .navbar-brand:hover {
+
+    color: #ffffff !important;
+
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+
+/* =========================================
+   NAV LINKS
+========================================= */
+
+.customer-navbar .nav-link {
+
+    color: #d8cfc4 !important;
+
+    font-size: 15px;
+
+    font-weight: 400;
+
+    padding: 8px 10px !important;
+
+    margin-left: 4px;
+
+    transition: all 0.3s ease;
+}
+
+.customer-navbar .nav-link:hover {
+
+    color: #ffffff !important;
+
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================
+   USER NAME
+========================================= */
+
+.customer-user {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-left: 8px;
+    margin-right: 5px;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.3s ease;
+}
+
+
+/* User hover */
+
+.customer-user:hover {
+
+    background: rgba(255, 255, 255, 0.18);
+
+    border-color: rgba(255, 255, 255, 0.35);
+
+    transform: translateY(-1px);
+}
+
+
+/* Small user icon */
+
+.user-icon {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 8px;
+    height: 8px;
+
+    font-size: 8px;
+
+    color: #7dd3fc;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.customer-navbar .logout-link {
+
+    margin-left: 3px;
+}
+
+
+/* =========================================
+   DASHBOARD CONTENT
+========================================= */
+
+.dashboard-content {
+
+    min-height: calc(100vh - 70px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   WELCOME CONTENT
+========================================= */
+
+.dashboard-welcome {
+
+    width: 600px;
+
+    padding: 35px 40px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    border-radius: 16px;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.30);
+}
+
+
+/* Small welcome text */
+
+.welcome-small {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #b8c7d9;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+
+/* Heading */
+
+.dashboard-welcome h1 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 42px;
+
+    font-weight: 500;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+
+/* User name inside heading */
+
+.dashboard-welcome h1 span {
+
+    color: #7dd3fc;
+
+    font-weight: 600;
+}
+
+
+/* Description */
+
+.dashboard-welcome p {
+
+    margin-top: 15px;
+
+    margin-bottom: 0;
+
+    color: #e0e0e0;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .customer-navbar {
+
+        height: auto;
+
+        min-height: 65px;
+    }
+
+    .customer-navbar .navbar-brand {
+
+        font-size: 17px;
+    }
+
+    .customer-navbar .navbar-nav {
+
+        padding: 10px 0;
+    }
+
+    .customer-user {
+
+        margin: 5px 0;
+    }
+
+    .dashboard-content {
+
+        padding-top: 100px;
+    }
+
+    .dashboard-welcome {
+
+        width: 90%;
+
+        padding: 30px 20px;
+    }
+
+    .dashboard-welcome h1 {
+
+        font-size: 32px;
+    }
+}
+
+/* =========================================================
+   CUSTOMER SIDEBAR
+========================================================= */
+
+.customer-sidebar {
+
+    position: fixed;
+
+    top: 70px;
+    left: 0;
+
+    width: 270px;
+    height: calc(100vh - 70px);
+
+    background: rgba(15, 15, 15, 0.82);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+
+    z-index: 9998;
+
+    padding: 25px 15px;
+
+    transition: all 0.35s ease;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   SIDEBAR HEADER
+========================================================= */
+
+.sidebar-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 5px 12px 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+    margin-bottom: 15px;
+}
+
+.sidebar-title {
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+
+/* Close button */
+
+.sidebar-close {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+
+    font-weight: 300;
+
+    cursor: pointer;
+
+    border-radius: 50%;
+
+    transition: all 0.25s ease;
+}
+
+.sidebar-close:hover {
+
+    background: rgba(255, 255, 255, 0.12);
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   SIDEBAR LINKS
+========================================================= */
+
+.sidebar-menu {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.sidebar-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    color: rgba(255, 255, 255, 0.72) !important;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    border-radius: 9px;
+
+    transition: all 0.25s ease;
+}
+
+
+.sidebar-link:hover {
+
+    color: #ffffff !important;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    transform: translateX(4px);
+}
+
+
+/* Active */
+
+.sidebar-link.active {
+
+    color: #ffffff !important;
+
+    background: rgba(125, 211, 252, 0.14);
+
+    border-left: 3px solid #7dd3fc;
+}
+
+
+/* =========================================================
+   SIDEBAR ICON
+========================================================= */
+
+.sidebar-icon {
+
+    width: 22px;
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 18px;
+
+    color: #b8c7d9;
+
+    flex-shrink: 0;
+}
+
+
+.sidebar-link:hover .sidebar-icon {
+
+    color: #7dd3fc;
+}
+
+
+/* Logout */
+
+.sidebar-logout {
+
+    margin-top: 15px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+
+    padding-top: 18px;
+
+    border-radius: 0 0 9px 9px;
+}
+
+.sidebar-logout:hover {
+
+    color: #ffb4b4 !important;
+
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.customer-main-content {
+
+    margin-left: 270px;
+
+    padding-top: 70px;
+
+    min-height: 100vh;
+
+    transition: all 0.35s ease;
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.sidebar-toggle {
+
+    display: none;
+}
+
+
+/* =========================================================
+   MOBILE BUTTON
+========================================================= */
+
+.mobile-sidebar-button {
+
+      display: none;
+
+    position: fixed;
+
+    top: 82px;
+    left: 15px;
+
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    border-radius: 8px;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 9997;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.mobile-sidebar-button:hover {
+
+    background: rgba(255, 255, 255, 0.15);
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   MOBILE OVERLAY
+========================================================= */
+
+.sidebar-overlay {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9996;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(2px);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .customer-sidebar {
+
+        width: 240px;
+    }
+
+    .customer-main-content {
+
+        margin-left: 240px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .customer-sidebar {
+
+        top: 0;
+
+        left: -280px;
+
+        width: 270px;
+
+        height: 100vh;
+
+        z-index: 10000;
+
+        padding-top: 25px;
+    }
+
+
+    .customer-main-content {
+
+        margin-left: 0;
+
+        padding-top: 70px;
+    }
+
+
+    .mobile-sidebar-button {
+
+        display: flex;
+    }
+
+
+    /* Sidebar open */
+
+    .sidebar-toggle:checked ~ .customer-sidebar {
+
+        left: 0;
+    }
+
+
+    /* Overlay visible */
+
+    .sidebar-toggle:checked ~ .sidebar-overlay {
+
+        display: block;
+    }
+
+
+    /* Keep button below sidebar */
+
+    .sidebar-toggle:checked ~ .mobile-sidebar-button {
+
+        z-index: 10001;
+
+        left: 225px;
+
+        background: rgba(255, 255, 255, 0.12);
+        display:none;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .customer-sidebar {
+
+        width: 250px;
+
+        left: -260px;
+    }
+
+
+    .sidebar-toggle:checked ~ .customer-sidebar {
+
+        left: 0;
+    }
+
+
+    .sidebar-toggle:checked ~ .mobile-sidebar-button {
+
+        left: 205px;
+    }
+
+}
