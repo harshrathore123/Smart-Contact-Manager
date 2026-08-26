@@ -64,7 +64,7 @@ public class UserController {
 		}
 
 		// 3. Set default values
-		user.setRole("ROLE_ADMIN");
+		user.setRole("ROLE_CUSTOMER");
 		user.setEnabled(true);
 		user.setImageUrl("default.png");
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
