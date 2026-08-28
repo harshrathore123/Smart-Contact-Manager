@@ -108,7 +108,7 @@ public class CustomerController {
 	        // =========================
 	        // IMAGE UPLOADING
 	        // =========================
-
+	        System.out.println("AUTO DEPLOY TEST - Render");
 	        if (file.isEmpty()) {
 
 	            System.out.println("File is empty");
