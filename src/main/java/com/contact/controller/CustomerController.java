@@ -71,68 +71,140 @@ public class CustomerController {
 
 	// Processing Add Contact Form
 	@PostMapping("/process-contact")
-	public String processContact(@Valid @ModelAttribute Contact contact,
-			@RequestParam("profileImage") MultipartFile file, 
-			BindingResult result, 
-			Model model,
-			Principal principal, 
-			RedirectAttributes redirectAttribute) {
+	public String processContact(
+	        @Valid @ModelAttribute Contact contact,
+	        BindingResult result,
+	        @RequestParam("profileImage") MultipartFile file,
+	        Model model,
+	        Principal principal,
+	        RedirectAttributes redirectAttribute) {
 
-		try {
-			if (result.hasErrors()) {
-				User user = userRepository.getUserByEmail(principal.getName());
-				model.addAttribute("user", user);
-				model.addAttribute("title", "Customer Add Contact - Smart Contact Manager");
-				return "customer/customer_add_contact";
-			}
+	    try {
 
-			// Getting Username
-			String username = principal.getName();
-			System.out.println("Username" + username);
+	        if (result.hasErrors()) {
 
-			User usern = this.userRepository.getUserByEmail(username);
+	            User user = userRepository.getUserByEmail(principal.getName());
 
-			usern.getContact().add(contact);
-			
-			// Image Uploading
-			if(file.isEmpty()) {
-				// if the file is empty then try our message
-				System.out.println("File is empty");
-				redirectAttribute.addAttribute("message", new Message("Image Not Uploaded !!","alert-danger"));
-				return "redirect:/customer/addContact";
-			}else {
-				// file the file to folder and update the name to contact
-				contact.setImage(file.getOriginalFilename());
-				
-				// finding the path 
-				File saveFile = new ClassPathResource("static/img").getFile();
-				
-				// Files package used
-				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + file.getOriginalFilename());
-				Files.copy(file.getInputStream(),path,StandardCopyOption.REPLACE_EXISTING);
-				
-				// Message
-				System.out.println("Image Uploaded!");
-			}
+	            model.addAttribute("user", user);
+	            model.addAttribute(
+	                    "title",
+	                    "Customer Add Contact - Smart Contact Manager"
+	            );
 
-			this.userRepository.save(usern);
+	            return "customer/customer_add_contact";
+	        }
 
-			// Getting UserDetail
-			model.addAttribute("user", usern);
+	        // Getting Username
+	        String username = principal.getName();
 
-			System.out.println(contact);
-			System.out.println(contact.getNickName());
-			redirectAttribute.addFlashAttribute("message", new Message("Successfully Registered !!", "alert-success"));
-			return "redirect:/customer/addContact";
+	        System.out.println("Username " + username);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			User user = userRepository.getUserByEmail(principal.getName());
-			model.addAttribute("user", user);
-			model.addAttribute("title", "Customer Add Contact - Smart Contact Manager");
-			redirectAttribute.addFlashAttribute("message",
-					new Message("Something went wrong !! " + e.getMessage(), "alert-danger"));
-			return "redirect:/customer/addContact";
-		}
+	        User usern = this.userRepository.getUserByEmail(username);
+
+	        contact.setUser(usern);
+	        usern.getContact().add(contact);
+
+
+	        // =========================
+	        // IMAGE UPLOADING
+	        // =========================
+
+	        if (file.isEmpty()) {
+
+	            System.out.println("File is empty");
+
+	            redirectAttribute.addFlashAttribute(
+	                    "message",
+	                    new Message("Image Not Uploaded or Image Name Already Available !!", "alert-danger")
+	            );
+
+	            return "redirect:/customer/addContact";
+
+	        } else {
+
+	            // Set image name
+	            contact.setImage(file.getOriginalFilename());
+
+
+	            // Create upload folder outside JAR
+	            String uploadDir =
+	                    System.getProperty("user.dir")
+	                    + File.separator
+	                    + "uploads";
+
+
+	            File saveFile = new File(uploadDir);
+
+
+	            // Create folder if it does not exist
+	            if (!saveFile.exists()) {
+	                saveFile.mkdirs();
+	            }
+
+
+	            // Create complete file path
+	            Path path = Paths.get(
+	                    saveFile.getAbsolutePath()
+	                    + File.separator
+	                    + file.getOriginalFilename()
+	            );
+
+
+	            // Save image
+	            Files.copy(
+	                    file.getInputStream(),
+	                    path,
+	                    StandardCopyOption.REPLACE_EXISTING
+	            );
+
+
+	            System.out.println("Image Uploaded!");
+	        }
+
+
+	        // Save user
+	        this.userRepository.save(usern);
+
+
+	        // Getting UserDetail
+	        model.addAttribute("user", usern);
+
+	        System.out.println(contact);
+	        System.out.println(contact.getNickName());
+
+
+	        redirectAttribute.addFlashAttribute(
+	                "message",
+	                new Message("Successfully Registered !!", "alert-success")
+	        );
+
+
+	        return "redirect:/customer/addContact";
+
+
+	    } catch (Exception e) {
+
+	        e.printStackTrace();
+
+	        User user =
+	                userRepository.getUserByEmail(principal.getName());
+
+	        model.addAttribute("user", user);
+
+	        model.addAttribute(
+	                "title",
+	                "Customer Add Contact - Smart Contact Manager"
+	        );
+
+	        redirectAttribute.addFlashAttribute(
+	                "message",
+	                new Message(
+	                        "Something went wrong !! " + e.getMessage(),
+	                        "alert-danger"
+	                )
+	        );
+
+	        return "redirect:/customer/addContact";
+	    }
 	}
 }

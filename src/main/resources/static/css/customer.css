@@ -1034,3 +1034,13 @@
         border-radius: 5px !important;
     }
 }
+
+/* Keep input transparent even when focused */
+.input-wrapper input,
+.input-wrapper input:focus {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #ffffff;
+    outline: none;
+    box-shadow: none;
+}

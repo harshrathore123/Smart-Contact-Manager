@@ -37,6 +37,7 @@ public class Contact {
 	private String description;
 
 	@NotBlank(message = "Phone number is Mendatory!")
+	@Size(min=10, max=10, message="Phone number must be 10 digits")
 	private String phoneNumber;
 
 	@ManyToOne
@@ -81,6 +82,15 @@ public class Contact {
 
 	public String getImage() {
 		return image;
+	}
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void setImage(String image) {
