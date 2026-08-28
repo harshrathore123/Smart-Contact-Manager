@@ -1,10 +1,39 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{fragment/base :: layout(~{::section})}"
->
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragment/base :: layout(~{::section})}">
+
 <body>
-	<section>
-		<h1>About Page</h1>
-	</section>
+
+<section class="banner py-5">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-md-10 col-lg-8">
+
+                <div class="about-content text-center">
+
+                    <h1 class="mb-4">
+                        About Page
+                    </h1>
+
+                    <p class="mb-0">
+                        Smart Contact Manager helps you manage
+                        your contacts easily.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 </body>
 </html>
