@@ -1457,33 +1457,255 @@ body {
 
 }
 
+/* =========================================================
+   COMMON CUSTOMER NAVBAR
+   Added to style.css for BEFORE LOGIN pages
+   Same design as AFTER LOGIN navbar
+   ========================================================= */
+
+
 /* =========================
-   RESPONSIVE NAVBAR
+   NAVBAR
    ========================= */
 
-/* Mobile / Tablet */
-@media (max-width: 991.98px) {
+.customer-navbar {
+    height: 70px;
+    width: 100%;
 
-  
-    .navbar-nav {
-        width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+}
+
+
+/* =========================
+   NAVBAR INNER
+   ========================= */
+
+.customer-navbar-inner {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 40px;
+}
+
+
+/* =========================
+   BRAND
+   ========================= */
+
+.customer-brand {
+    color: #f1f1f1;
+
+    text-decoration: none;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   NAVIGATION MENU
+   ========================= */
+
+.customer-nav-menu {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+/* =========================
+   NAVIGATION LINKS
+   ========================= */
+
+.customer-nav-link {
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    transition: all 0.2s ease;
+}
+
+
+/* =========================
+   HOVER
+   ========================= */
+
+.customer-nav-link:hover {
+    color: #4db8ff;
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================
+   USER
+   ========================= */
+
+.customer-user {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+
+/* =========================
+   USER DOT
+   ========================= */
+
+.user-dot {
+    color: #4db8ff;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   MOBILE MENU TOGGLE
+   ========================= */
+
+.customer-menu-toggle {
+    display: none;
+}
+
+
+/* =========================
+   HAMBURGER BUTTON
+   ========================= */
+
+.customer-menu-button {
+    display: none;
+}
+
+
+/* =========================================================
+   MOBILE NAVBAR
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* -------------------------
+       Navbar Inner
+       ------------------------- */
+
+    .customer-navbar-inner {
+        padding: 0 18px;
     }
 
 
-    .navbar-nav .nav-item {
-        width: 100%;
+    /* -------------------------
+       Brand
+       ------------------------- */
+
+    .customer-brand {
+        font-size: 18px;
     }
 
 
-    .navbar-nav .nav-link {
-        padding: 10px 12px;
-        color: white;
+    /* -------------------------
+       Hamburger
+       ------------------------- */
+
+    .customer-menu-button {
+        display: flex;
+
+        margin-left: auto;
+
+        width: 42px;
+        height: 42px;
+
+        align-items: center;
+        justify-content: center;
+
+        color: #eeeeee;
+
+        font-size: 27px;
+
+        cursor: pointer;
+
+        background: rgba(0, 0, 0, 0.35);
+
+        border: 1px solid rgba(255, 255, 255, 0.10);
+
+        border-radius: 8px;
     }
 
 
-    .navbar-nav .nav-link:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
+    /* -------------------------
+       Mobile Dropdown
+       ------------------------- */
+
+    .customer-nav-menu {
+
+        position: absolute;
+
+        top: 70px;
+        right: 15px;
+
+        width: 210px;
+
+        display: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 5px;
+
+        padding: 12px;
+
+        background: rgba(12, 15, 16, 0.94);
+
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        border-radius: 12px;
+
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+
+        z-index: 9999;
+    }
+
+
+    /* -------------------------
+       Open Mobile Menu
+       ------------------------- */
+
+    .customer-menu-toggle:checked ~ .customer-nav-menu {
+        display: flex;
+    }
+
+
+    /* -------------------------
+       Mobile Links
+       ------------------------- */
+
+    .customer-nav-link {
+        padding: 12px;
     }
 
 }

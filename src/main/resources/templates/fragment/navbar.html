@@ -3,56 +3,47 @@
 
 <body>
 <nav th:fragment="navbar"
-     class="navbar navbar-expand-lg bg-primary navbar-dark">
+     class="customer-navbar">
 
-    <div class="container-fluid">
+    <div class="customer-navbar-inner">
 
-        <a class="navbar-brand" th:href="@{/}">
+        <!-- BRAND -->
+        <a class="customer-brand" th:href="@{/}">
             Smart Contact Manager
         </a>
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
+        <!-- MOBILE MENU BUTTON -->
+        <input type="checkbox"
+               id="before-menu-toggle"
+               class="customer-menu-toggle">
 
-            <span class="navbar-toggler-icon"></span>
+        <label for="before-menu-toggle"
+               class="customer-menu-button">
+            ☰
+        </label>
 
-        </button>
+        <!-- BEFORE LOGIN NAVIGATION -->
+        <div class="customer-nav-menu">
 
-        <div class="collapse navbar-collapse"
-             id="navbarSupportedContent">
+            <a class="customer-nav-link"
+               th:href="@{/}">
+                Home
+            </a>
 
-            <ul class="navbar-nav ms-auto text-uppercase">
+            <a class="customer-nav-link"
+               th:href="@{/about}">
+                About
+            </a>
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">
-                        Home
-                    </a>
-                </li>
+            <a class="customer-nav-link"
+               th:href="@{/signin}">
+                Login
+            </a>
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/about}">
-                        About
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/signin}">
-                        Login
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/signup}">
-                        Sign Up
-                    </a>
-                </li>
-
-            </ul>
+            <a class="customer-nav-link"
+               th:href="@{/signup}">
+                Sign Up
+            </a>
 
         </div>
 
