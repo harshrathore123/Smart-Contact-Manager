@@ -1044,3 +1044,35 @@
     outline: none;
     box-shadow: none;
 }
+
+.contact-table {
+    background: transparent !important;
+    color: white !important;
+}
+
+.contact-table thead {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.contact-table tbody tr {
+    background: rgba(255, 255, 255, 0.03);
+    color: white;
+}
+
+.contact-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.contact-table th,
+.contact-table td {
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.15);
+    padding: 15px;
+}
+
+.contact-image {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 50%;
+}

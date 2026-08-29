@@ -10,6 +10,6 @@ import com.contact.entities.Contact;
 import com.contact.entities.User;
 
 public interface ContactRepository extends JpaRepository<Contact, Integer>{
-	@Query("select c from Contact c where c.id = :id")
+	@Query("select c from Contact c where c.user.id = :id")
 	public List<Contact> getContactById(@Param("id") int id);
 }

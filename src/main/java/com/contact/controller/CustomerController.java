@@ -9,7 +9,6 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -211,24 +210,36 @@ public class CustomerController {
 	    }
 	}
 	
-	// View All Contact
 	@GetMapping("/viewContact")
 	public String viewContact(Model model, Principal principal) {
-		
-		String username = principal.getName();
-		System.out.println("Username: "+username);
-		
-		User user = userRepository.getUserByEmail(username);
-		
-		model.addAttribute("user", user);
-		model.addAttribute("title", "Customer View Contact - Smart Contact Manager");
-	
-		// Read Data from Database
-		List<Contact> list = contactRepository.getContactById(user.getId());
-		System.out.println(list);
-		
-		model.addAttribute("contact", list);
-		
-		return "customer/customer_view_contact";
+
+	    String username = principal.getName();
+
+	    System.out.println("Username: " + username);
+
+	    User user = userRepository.getUserByEmail(username);
+
+	    model.addAttribute("user", user);
+	    model.addAttribute("title", "Customer View Contact - Smart Contact Manager");
+
+	    // Get all contacts of logged-in user
+	    List<Contact> list = contactRepository.getContactById(user.getId());
+
+	    System.out.println("Total Contacts: " + list.size());
+
+	    for (Contact contact : list) {
+	        System.out.println("CID: " + contact.getCid());
+	        System.out.println("Name: " + contact.getName());
+	        System.out.println("Nick Name: " + contact.getNickName());
+	        System.out.println("Phone: " + contact.getPhoneNumber());
+	        System.out.println("Description: " + contact.getDescription());
+	        System.out.println("Image: " + contact.getImage());
+	        System.out.println("-------------------------");
+	    }
+
+	    // IMPORTANT
+	    model.addAttribute("contacts", list);
+
+	    return "customer/customer_view_contact";
 	}
 }
