@@ -227,6 +227,8 @@ public class CustomerController {
 		List<Contact> list = contactRepository.getContactById(user.getId());
 		System.out.println(list);
 		
+		model.addAttribute("contact", list);
+		
 		return "customer/customer_view_contact";
 	}
 }
