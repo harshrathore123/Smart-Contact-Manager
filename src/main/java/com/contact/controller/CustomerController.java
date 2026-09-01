@@ -134,7 +134,7 @@ public class CustomerController {
 	                    + File.separator
 	                    + "uploads";
 
-
+ 
 	            File saveFile = new File(uploadDir);
 
 
