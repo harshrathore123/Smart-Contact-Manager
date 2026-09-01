@@ -214,9 +214,7 @@ public class CustomerController {
 	public String viewContact(Model model, Principal principal) {
 
 	    String username = principal.getName();
-
-	    System.out.println("Username: " + username);
-
+	    
 	    User user = userRepository.getUserByEmail(username);
 
 	    model.addAttribute("user", user);
