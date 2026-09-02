@@ -34,7 +34,7 @@ public class CustomerController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private ContactRepository contactRepository;
 
@@ -73,171 +73,127 @@ public class CustomerController {
 
 	// Processing Add Contact Form
 	@PostMapping("/process-contact")
-	public String processContact(
-	        @Valid @ModelAttribute Contact contact,
-	        BindingResult result,
-	        @RequestParam("profileImage") MultipartFile file,
-	        Model model,
-	        Principal principal,
-	        RedirectAttributes redirectAttribute) {
+	public String processContact(@Valid @ModelAttribute Contact contact, BindingResult result,
+			@RequestParam("profileImage") MultipartFile file, Model model, Principal principal,
+			RedirectAttributes redirectAttribute) {
 
-	    try {
+		try {
 
-	        if (result.hasErrors()) {
+			if (result.hasErrors()) {
 
-	            User user = userRepository.getUserByEmail(principal.getName());
+				User user = userRepository.getUserByEmail(principal.getName());
 
-	            model.addAttribute("user", user);
-	            model.addAttribute(
-	                    "title",
-	                    "Customer Add Contact - Smart Contact Manager"
-	            );
+				model.addAttribute("user", user);
+				model.addAttribute("title", "Customer Add Contact - Smart Contact Manager");
 
-	            return "customer/customer_add_contact";
-	        }
+				return "customer/customer_add_contact";
+			}
 
-	        // Getting Username
-	        String username = principal.getName();
+			// Getting Username
+			String username = principal.getName();
 
-	        System.out.println("Username " + username);
+			System.out.println("Username " + username);
 
-	        User usern = this.userRepository.getUserByEmail(username);
+			User usern = this.userRepository.getUserByEmail(username);
 
-	        contact.setUser(usern);
-	        usern.getContact().add(contact);
+			contact.setUser(usern);
+			usern.getContact().add(contact);
 
+			// =========================
+			// IMAGE UPLOADING
+			// =========================
+			System.out.println("AUTO DEPLOY TEST - Render");
+			if (file.isEmpty()) {
 
-	        // =========================
-	        // IMAGE UPLOADING
-	        // =========================
-	        System.out.println("AUTO DEPLOY TEST - Render");
-	        if (file.isEmpty()) {
+				System.out.println("File is empty");
 
-	            System.out.println("File is empty");
+				redirectAttribute.addFlashAttribute("message",
+						new Message("Image Not Uploaded or Image Name Already Available !!", "alert-danger"));
 
-	            redirectAttribute.addFlashAttribute(
-	                    "message",
-	                    new Message("Image Not Uploaded or Image Name Already Available !!", "alert-danger")
-	            );
+				return "redirect:/customer/addContact";
 
-	            return "redirect:/customer/addContact";
+			} else {
 
-	        } else {
+				// Set image name
+				contact.setImage(file.getOriginalFilename());
 
-	            // Set image name
-	            contact.setImage(file.getOriginalFilename());
+				// Create upload folder outside JAR
+				String uploadDir = System.getProperty("user.dir") + File.separator + "uploads";
 
+				File saveFile = new File(uploadDir);
 
-	            // Create upload folder outside JAR
-	            String uploadDir =
-	                    System.getProperty("user.dir")
-	                    + File.separator
-	                    + "uploads";
+				// Create folder if it does not exist
+				if (!saveFile.exists()) {
+					saveFile.mkdirs();
+				}
 
- 
-	            File saveFile = new File(uploadDir);
+				// Create complete file path
+				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + file.getOriginalFilename());
 
+				// Save image
+				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-	            // Create folder if it does not exist
-	            if (!saveFile.exists()) {
-	                saveFile.mkdirs();
-	            }
+				System.out.println("Image Uploaded!");
+			}
 
+			// Save user
+			this.userRepository.save(usern);
 
-	            // Create complete file path
-	            Path path = Paths.get(
-	                    saveFile.getAbsolutePath()
-	                    + File.separator
-	                    + file.getOriginalFilename()
-	            );
+			// Getting UserDetail
+			model.addAttribute("user", usern);
 
+			System.out.println(contact);
+			System.out.println(contact.getNickName());
 
-	            // Save image
-	            Files.copy(
-	                    file.getInputStream(),
-	                    path,
-	                    StandardCopyOption.REPLACE_EXISTING
-	            );
+			redirectAttribute.addFlashAttribute("message", new Message("Successfully Registered !!", "alert-success"));
 
+			return "redirect:/customer/addContact";
 
-	            System.out.println("Image Uploaded!");
-	        }
+		} catch (Exception e) {
 
+			e.printStackTrace();
 
-	        // Save user
-	        this.userRepository.save(usern);
+			User user = userRepository.getUserByEmail(principal.getName());
 
+			model.addAttribute("user", user);
 
-	        // Getting UserDetail
-	        model.addAttribute("user", usern);
+			model.addAttribute("title", "Customer Add Contact - Smart Contact Manager");
 
-	        System.out.println(contact);
-	        System.out.println(contact.getNickName());
+			redirectAttribute.addFlashAttribute("message",
+					new Message("Something went wrong !! " + e.getMessage(), "alert-danger"));
 
-
-	        redirectAttribute.addFlashAttribute(
-	                "message",
-	                new Message("Successfully Registered !!", "alert-success")
-	        );
-
-
-	        return "redirect:/customer/addContact";
-
-
-	    } catch (Exception e) {
-
-	        e.printStackTrace();
-
-	        User user =
-	                userRepository.getUserByEmail(principal.getName());
-
-	        model.addAttribute("user", user);
-
-	        model.addAttribute(
-	                "title",
-	                "Customer Add Contact - Smart Contact Manager"
-	        );
-
-	        redirectAttribute.addFlashAttribute(
-	                "message",
-	                new Message(
-	                        "Something went wrong !! " + e.getMessage(),
-	                        "alert-danger"
-	                )
-	        );
-
-	        return "redirect:/customer/addContact";
-	    }
+			return "redirect:/customer/addContact";
+		}
 	}
-	
+
 	@GetMapping("/viewContact")
 	public String viewContact(Model model, Principal principal) {
 
-	    String username = principal.getName();
-	    
-	    User user = userRepository.getUserByEmail(username);
+		String username = principal.getName();
 
-	    model.addAttribute("user", user);
-	    model.addAttribute("title", "Customer View Contact - Smart Contact Manager");
+		User user = userRepository.getUserByEmail(username);
 
-	    // Get all contacts of logged-in user
-	    List<Contact> list = contactRepository.getContactById(user.getId());
+		model.addAttribute("user", user);
+		model.addAttribute("title", "Customer View Contact - Smart Contact Manager");
 
-	    System.out.println("Total Contacts: " + list.size());
+		// Get all contacts of logged-in user
+		List<Contact> list = contactRepository.getContactById(user.getId());
 
-	    for (Contact contact : list) {
-	        System.out.println("CID: " + contact.getCid());
-	        System.out.println("Name: " + contact.getName());
-	        System.out.println("Nick Name: " + contact.getNickName());
-	        System.out.println("Phone: " + contact.getPhoneNumber());
-	        System.out.println("Description: " + contact.getDescription());
-	        System.out.println("Image: " + contact.getImage());
-	        System.out.println("-------------------------");
-	    }
+		System.out.println("Total Contacts: " + list.size());
 
-	    // IMPORTANT
-	    model.addAttribute("contacts", list);
+		for (Contact contact : list) {
+			System.out.println("CID: " + contact.getCid());
+			System.out.println("Name: " + contact.getName());
+			System.out.println("Nick Name: " + contact.getNickName());
+			System.out.println("Phone: " + contact.getPhoneNumber());
+			System.out.println("Description: " + contact.getDescription());
+			System.out.println("Image: " + contact.getImage());
+			System.out.println("-------------------------");
+		}
 
-	    return "customer/customer_view_contact";
+		// IMPORTANT
+		model.addAttribute("contacts", list);
+
+		return "customer/customer_view_contact";
 	}
 }
