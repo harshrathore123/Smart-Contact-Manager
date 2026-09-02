@@ -9,11 +9,15 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -166,8 +170,8 @@ public class CustomerController {
 		}
 	}
 
-	@GetMapping("/viewContact")
-	public String viewContact(Model model, Principal principal) {
+	@GetMapping("/viewContact/{page}")
+	public String viewContact(@PathVariable("page") Integer page,Model model, Principal principal) {
 
 		String username = principal.getName();
 
@@ -177,9 +181,9 @@ public class CustomerController {
 		model.addAttribute("title", "Customer View Contact - Smart Contact Manager");
 
 		// Get all contacts of logged-in user
-		List<Contact> list = contactRepository.getContactById(user.getId());
-
-		System.out.println("Total Contacts: " + list.size());
+		// Create Pageable interface for access page request
+		Pageable pageable = PageRequest.of(page, 4);
+		Page<Contact> list = contactRepository.getContactById(user.getId(),pageable);
 
 		for (Contact contact : list) {
 			System.out.println("CID: " + contact.getCid());
@@ -192,7 +196,10 @@ public class CustomerController {
 		}
 
 		// IMPORTANT
+		// Adding Pagination property inside model attribute
+		model.addAttribute("totalPage", list.getTotalPages());
 		model.addAttribute("contacts", list);
+		model.addAttribute("currentPage", page);
 
 		return "customer/customer_view_contact";
 	}
