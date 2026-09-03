@@ -96,8 +96,6 @@ public class CustomerController {
 			// Getting Username
 			String username = principal.getName();
 
-			System.out.println("Username " + username);
-
 			User usern = this.userRepository.getUserByEmail(username);
 
 			contact.setUser(usern);
@@ -106,13 +104,11 @@ public class CustomerController {
 			// =========================
 			// IMAGE UPLOADING
 			// =========================
-			System.out.println("AUTO DEPLOY TEST - Render");
+			
 			if (file.isEmpty()) {
 
-				System.out.println("File is empty");
-
 				redirectAttribute.addFlashAttribute("message",
-						new Message("Image Not Uploaded or Image Name Already Available !!", "alert-danger"));
+						new Message("Image Not Uploaded !!", "alert-danger"));
 
 				return "redirect:/customer/addContact";
 
