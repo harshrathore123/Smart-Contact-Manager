@@ -212,7 +212,7 @@ public class CustomerController {
 
 		model.addAttribute("viewcontactdata", contact);
 
-		return "/customer/customer_showContactDetail";
+		return "customer/customer_showContactDetail";
 
 	}
 }
