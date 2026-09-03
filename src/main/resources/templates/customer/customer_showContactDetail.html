@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{customer/base :: layout(~{::section})}">
+
+<body>
+
+	<section class="customer-dashboard contact-detail-page">
+
+		<div class="container py-4">
+
+			<div class="contact-detail-card">
+
+				<!-- ================= HEADER ================= -->
+
+				<div class="contact-detail-header">
+
+					<div class="contact-detail-title">
+
+						<div class="contact-detail-icon">
+							<i class="bi bi-person-vcard-fill"></i>
+						</div>
+
+						<div>
+							<h2>
+								Contact Details: <span th:text="${viewcontactdata.name}">
+									Contact Name </span>
+							</h2>
+
+							<p>View and manage contact information</p>
+						</div>
+
+					</div>
+
+					<div class="contact-sparkle">
+						<i class="bi bi-stars"></i>
+					</div>
+
+				</div>
+
+
+				<!-- ================= PROFILE SECTION ================= -->
+
+				<div class="row g-4 align-items-center contact-profile-section">
+
+					<!-- IMAGE -->
+
+					<div class="col-md-4 text-center">
+
+						<!-- Static default image -->
+
+						<img
+							th:if="${viewcontactdata.image != null 
+                                 and viewcontactdata.image.startsWith('img/')}"
+							th:src="@{'/' + ${viewcontactdata.image}}"
+							class="contact-detail-image" alt="Contact Image">
+
+
+						<!-- Uploaded image -->
+
+						<img
+							th:unless="${viewcontactdata.image != null 
+                                     and viewcontactdata.image.startsWith('img/')}"
+							th:src="@{'/uploads/' + ${viewcontactdata.image}}"
+							class="contact-detail-image" alt="Contact Image">
+
+					</div>
+
+
+					<!-- BASIC INFORMATION -->
+
+					<div class="col-md-8">
+
+						<h1 class="contact-detail-name" th:text="${viewcontactdata.name}">
+							Akash Home</h1>
+
+						<p class="contact-detail-subtitle">Managed Contact</p>
+
+
+						<div class="contact-info-grid">
+
+							<div class="contact-info-item">
+
+								<div class="contact-info-icon">
+									<i class="bi bi-person-badge"></i>
+								</div>
+
+								<div>
+									<small>ID</small> <strong th:text="${viewcontactdata.cid}">
+										5 </strong>
+								</div>
+
+							</div>
+
+
+							<div class="contact-info-item">
+
+								<div class="contact-info-icon">
+									<i class="bi bi-envelope"></i>
+								</div>
+
+								<div>
+									<small>Email</small> <a
+										th:href="'mailto:' + ${viewcontactdata.email}"
+										th:text="${viewcontactdata.email}"> email@gmail.com </a>
+
+								</div>
+
+							</div>
+
+
+							<div class="contact-info-item">
+
+								<div class="contact-info-icon">
+									<i class="bi bi-telephone"></i>
+								</div>
+
+								<div>
+									<small>Phone</small> <a
+										th:href="'tel:' + ${viewcontactdata.phoneNumber}"
+										th:text="${viewcontactdata.phoneNumber}"> 9876543210 </a>
+
+								</div>
+
+							</div>
+
+
+							<div class="contact-info-item">
+
+								<div class="contact-info-icon">
+									<i class="bi bi-person-heart"></i>
+								</div>
+
+								<div>
+									<small>Nick Name</small> <strong
+										th:text="${viewcontactdata.nickName}"> Akki </strong>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<!-- ================= DETAILS ================= -->
+
+				<div class="row g-3 mt-2">
+
+					<!-- WORK -->
+
+					<div class="col-md-6">
+
+						<div class="contact-detail-box">
+
+							<h5>
+								<i class="bi bi-briefcase-fill"></i> Professional Information
+							</h5>
+
+							<div class="detail-row">
+
+								<span> <i class="bi bi-building"></i> Work
+								</span> <strong th:text="${viewcontactdata.work}"> Student </strong>
+
+							</div>
+
+						</div>
+
+					</div>
+
+
+					<!-- DESCRIPTION -->
+
+					<div class="col-md-6">
+
+						<div class="contact-detail-box">
+
+							<h5>
+								<i class="bi bi-card-text"></i> Description
+							</h5>
+
+							<p th:text="${viewcontactdata.description}">Contact
+								description goes here.</p>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<!-- ================= ACTIONS ================= -->
+
+				<div class="contact-detail-actions">
+
+					<a th:href="@{/customer/viewContact/0}" class="btn btn-secondary">
+
+						<i class="bi bi-arrow-left"></i> Back to Contacts
+
+					</a>
+
+
+					<button type="button" class="btn btn-danger">
+
+						<i class="bi bi-trash3"></i> Delete
+
+					</button>
+
+
+					<button type="button" class="btn btn-success">
+
+						<i class="bi bi-pencil-square"></i> Update
+
+					</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</body>
+
+</html>

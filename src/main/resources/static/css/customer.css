@@ -1993,3 +1993,758 @@ html, body {
 		min-width: 620px !important;
 	}
 }
+
+/* =========================================================
+   CONTACT DETAILS CARD — SCOPED ONLY TO .contact-detail-page
+   Safe to paste at the end of your CSS file.
+   Matches the HTML structure exactly (no other class renamed).
+   ========================================================= */
+
+/* ---------- PAGE WRAPPER (keeps card below navbar + centered) ---------- */
+.contact-detail-page {
+	min-height: 100vh;
+	padding-top: 90px;
+	padding-bottom: 40px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+.contact-detail-page .container {
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+/* ---------- MAIN CARD ---------- */
+.contact-detail-page .contact-detail-card {
+	position: relative;
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 26px 28px 22px;
+	box-sizing: border-box;
+	background: linear-gradient(135deg, rgba(16, 14, 12, 0.94),
+		rgba(8, 8, 7, 0.92));
+	border: 1px solid rgba(255, 157, 55, 0.55);
+	border-radius: 24px;
+	box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55), 0 0 35px
+		rgba(255, 153, 51, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	color: #ffffff;
+	overflow: hidden;
+}
+
+/* Corner glows */
+.contact-detail-page .contact-detail-card::before {
+	content: "";
+	position: absolute;
+	top: -120px;
+	left: -100px;
+	width: 300px;
+	height: 300px;
+	background: radial-gradient(circle, rgba(255, 153, 51, 0.18),
+		transparent 68%);
+	filter: blur(18px);
+	pointer-events: none;
+}
+
+.contact-detail-page .contact-detail-card::after {
+	content: "";
+	position: absolute;
+	right: -120px;
+	bottom: -130px;
+	width: 350px;
+	height: 300px;
+	background: radial-gradient(circle, rgba(255, 153, 51, 0.10),
+		transparent 68%);
+	filter: blur(25px);
+	pointer-events: none;
+}
+
+/* ---------- HEADER ---------- */
+.contact-detail-page .contact-detail-header {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 0 0 18px;
+	padding: 0 0 15px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.contact-detail-page .contact-detail-title {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex: 1;
+	min-width: 0;
+}
+
+.contact-detail-page .contact-detail-icon {
+	width: 44px;
+	height: 44px;
+	min-width: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: rgba(255, 153, 51, 0.08);
+	border: 1px solid rgba(255, 153, 51, 0.40);
+	color: #ffad4d;
+	font-size: 19px;
+	box-shadow: 0 0 20px rgba(255, 153, 51, 0.10);
+}
+
+.contact-detail-page .contact-detail-header h2 {
+	margin: 0;
+	font-size: 21px;
+	line-height: 1.2;
+	font-weight: 700;
+	color: #ffffff;
+}
+
+.contact-detail-page .contact-detail-header h2 span {
+	color: #ffad4d;
+}
+
+.contact-detail-page .contact-detail-header p {
+	margin: 4px 0 0;
+	font-size: 12.5px;
+	color: rgba(255, 255, 255, 0.62);
+}
+
+.contact-detail-page .contact-sparkle {
+	color: #ffad4d;
+	font-size: 20px;
+	position: relative;
+	z-index: 2;
+	flex-shrink: 0;
+}
+
+/* ---------- PROFILE SECTION ---------- */
+.contact-detail-page .contact-profile-section {
+	position: relative;
+	z-index: 2;
+	margin: 0 !important;
+}
+
+.contact-detail-page .contact-detail-image {
+	display: block;
+	width: 150px !important;
+	height: 150px !important;
+	max-width: 150px !important;
+	max-height: 150px !important;
+	margin: 0 auto;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 3px solid #ff9d35;
+	background: #151311;
+	box-shadow: 0 0 0 6px rgba(255, 153, 51, 0.045), 0 0 0 12px
+		rgba(255, 153, 51, 0.018), 0 0 24px rgba(255, 153, 51, 0.25), 0 12px
+		30px rgba(0, 0, 0, 0.55);
+}
+
+.contact-detail-page .contact-detail-name {
+	position: relative;
+	display: inline-block;
+	margin: 0 0 10px;
+	font-size: 24px;
+	line-height: 1.2;
+	font-weight: 700;
+	color: #ffffff;
+}
+
+.contact-detail-page .contact-detail-name::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -6px;
+	width: 48px;
+	height: 3px;
+	border-radius: 5px;
+	background: linear-gradient(90deg, #ff9d35, #ffc477, transparent);
+	box-shadow: 0 0 10px rgba(255, 153, 51, 0.35);
+}
+
+.contact-detail-page .contact-detail-subtitle {
+	display: block;
+	margin: 8px 0 0;
+	font-size: 13px;
+	color: rgba(255, 255, 255, 0.62);
+}
+
+/* ---------- INFO GRID ---------- */
+.contact-detail-page .contact-info-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 10px;
+	margin-top: 16px;
+}
+
+.contact-detail-page .contact-info-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-height: 60px;
+	padding: 10px 14px;
+	box-sizing: border-box;
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.035),
+		rgba(255, 153, 51, 0.025));
+	border: 1px solid rgba(255, 153, 51, 0.25);
+	border-radius: 13px;
+	overflow: hidden;
+	transition: border-color 0.25s ease, background 0.25s ease, transform
+		0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-detail-page .contact-info-item::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 3px;
+	background: linear-gradient(180deg, #ff9d35, rgba(255, 153, 51, 0.05));
+}
+
+.contact-detail-page .contact-info-item:hover {
+	transform: translateY(-2px);
+	border-color: rgba(255, 153, 51, 0.48);
+	background: linear-gradient(135deg, rgba(255, 153, 51, 0.07),
+		rgba(255, 255, 255, 0.025));
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.contact-detail-page .contact-info-icon {
+	width: 32px;
+	height: 32px;
+	min-width: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: rgba(255, 153, 51, 0.10);
+	border: 1px solid rgba(255, 153, 51, 0.35);
+	color: #ffad4d;
+	font-size: 13px;
+}
+
+.contact-detail-page .contact-info-item>div:last-child {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.contact-detail-page .contact-info-item small {
+	color: rgba(255, 255, 255, 0.55);
+	font-size: 11px;
+	font-weight: 500;
+	margin-bottom: 2px;
+}
+
+.contact-detail-page .contact-info-item strong, .contact-detail-page .contact-info-item a
+	{
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: 700;
+	word-break: break-word;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.contact-detail-page .contact-info-item a:hover {
+	color: #ffb866;
+}
+
+/* ---------- PROFESSIONAL + DESCRIPTION BOXES ---------- */
+.contact-detail-page .contact-detail-box {
+	position: relative;
+	z-index: 2;
+	height: 100%;
+	padding: 14px 16px;
+	box-sizing: border-box;
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.032),
+		rgba(255, 153, 51, 0.018));
+	border: 1px solid rgba(255, 153, 51, 0.24);
+	border-radius: 15px;
+	transition: border-color 0.25s ease, transform 0.25s ease, box-shadow
+		0.25s ease;
+}
+
+.contact-detail-page .contact-detail-box:hover {
+	transform: translateY(-2px);
+	border-color: rgba(255, 153, 51, 0.42);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.contact-detail-page .contact-detail-box h5 {
+	margin: 0 0 10px;
+	color: #ffad4d;
+	font-size: 13px;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.contact-detail-page .detail-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin: 0;
+}
+
+.contact-detail-page .detail-row span {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: rgba(255, 255, 255, 0.58);
+}
+
+.contact-detail-page .detail-row i {
+	color: #ffad4d;
+}
+
+.contact-detail-page .detail-row strong {
+	color: #ffffff;
+}
+
+.contact-detail-page .contact-detail-box p {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.80);
+	font-size: 12.5px;
+	line-height: 1.6;
+	word-break: break-word;
+}
+
+/* ---------- ACTIONS ---------- */
+.contact-detail-page .contact-detail-actions {
+	position: relative;
+	z-index: 3;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+	margin-top: 18px;
+	padding-top: 16px;
+	border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.contact-detail-page .contact-detail-actions .btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-width: 105px;
+	justify-content: center;
+	padding: 9px 14px;
+	border-radius: 8px;
+	font-size: 12.5px;
+	font-weight: 500;
+	transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s
+		ease;
+}
+
+.contact-detail-page .contact-detail-actions .btn:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.08);
+}
+
+.contact-detail-page .contact-detail-actions .btn-secondary {
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.17);
+	color: #ffffff;
+	box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+}
+
+.contact-detail-page .contact-detail-actions .btn-danger {
+	background: #dc3545;
+	border: none;
+	color: #ffffff;
+	box-shadow: 0 5px 20px rgba(220, 53, 69, 0.22);
+}
+
+.contact-detail-page .contact-detail-actions .btn-success {
+	background: #198754;
+	border: none;
+	color: #ffffff;
+	box-shadow: 0 5px 20px rgba(25, 135, 84, 0.22);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+@media ( max-width : 768px) {
+	.contact-detail-page {
+		padding-top: 78px;
+	}
+	.contact-detail-page .contact-detail-card {
+		padding: 20px 14px 18px;
+		border-radius: 20px;
+	}
+	.contact-detail-page .contact-detail-header {
+		gap: 10px;
+		margin-bottom: 18px;
+		padding-bottom: 15px;
+	}
+	.contact-detail-page .contact-detail-icon {
+		width: 45px;
+		height: 45px;
+		min-width: 45px;
+		font-size: 19px;
+	}
+	.contact-detail-page .contact-detail-header h2 {
+		font-size: 21px;
+	}
+	.contact-detail-page .contact-detail-header p {
+		font-size: 12px;
+	}
+	.contact-detail-page .contact-sparkle {
+		font-size: 22px;
+	}
+	.contact-detail-page .contact-profile-section {
+		text-align: center;
+	}
+	.contact-detail-page .contact-detail-image {
+		width: 175px !important;
+		height: 175px !important;
+		max-width: 175px !important;
+		max-height: 175px !important;
+		margin: 0 auto 20px;
+	}
+	.contact-detail-page .contact-detail-name {
+		font-size: 27px;
+	}
+	.contact-detail-page .contact-detail-name::after {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.contact-detail-page .contact-info-grid {
+		grid-template-columns: 1fr;
+		gap: 10px;
+		margin-top: 22px;
+	}
+	.contact-detail-page .contact-info-item {
+		min-height: 70px;
+		text-align: left;
+	}
+	.contact-detail-page .contact-detail-box {
+		padding: 16px;
+	}
+	.contact-detail-page .contact-detail-actions {
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	.contact-detail-page .contact-detail-actions .btn {
+		min-width: 105px;
+		padding: 10px 13px;
+	}
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+@media ( max-width : 480px) {
+	.contact-detail-page .contact-detail-card {
+		padding: 17px 10px;
+		border-radius: 18px;
+	}
+	.contact-detail-page .contact-detail-header h2 {
+		font-size: 18px;
+	}
+	.contact-detail-page .contact-detail-header p {
+		font-size: 11px;
+	}
+	.contact-detail-page .contact-detail-image {
+		width: 140px !important;
+		height: 140px !important;
+		max-width: 140px !important;
+		max-height: 140px !important;
+	}
+	.contact-detail-page .contact-detail-name {
+		font-size: 24px;
+	}
+	.contact-detail-page .contact-info-item strong, .contact-detail-page .contact-info-item a
+		{
+		font-size: 14px;
+	}
+	.contact-detail-page .contact-detail-actions {
+		flex-direction: column;
+		width: 100%;
+	}
+	.contact-detail-page .contact-detail-actions .btn {
+		width: 100%;
+	}
+}
+
+/* =========================================================
+   MY CONTACTS (LIST) — FINAL SIZE + CENTER + NAVBAR FIX
+   Paste this at the very end of your CSS file, AFTER
+   everything else. It only touches .contact-page and its
+   children, so nothing else is affected. It intentionally
+   overrides earlier duplicate .contact-page rules already
+   in your file (that's why some values repeat with !important).
+   ========================================================= */
+.contact-page {
+	margin-top: 0 !important;
+	padding-top: 90px !important;
+	padding-bottom: 40px !important;
+	min-height: 100vh !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	box-sizing: border-box;
+}
+
+.contact-page .contact-container {
+	width: 100% !important;
+	max-width: 950px !important;
+	margin: 0 auto !important;
+	padding: 0 15px !important;
+	box-sizing: border-box;
+}
+
+.contact-page .contact-glass-card {
+	width: 100% !important;
+	max-width: 950px !important;
+	margin: 0 auto !important;
+	border-radius: 18px !important;
+}
+
+/* ---------- HEADER (smaller) ---------- */
+.contact-page .contact-header {
+	min-height: 78px !important;
+	padding: 14px 20px !important;
+}
+
+.contact-page .contact-title-wrapper {
+	gap: 14px !important;
+}
+
+.contact-page .contact-icon {
+	width: 48px !important;
+	height: 48px !important;
+	min-width: 48px !important;
+	font-size: 20px !important;
+}
+
+.contact-page .contact-header h2 {
+	font-size: 22px !important;
+}
+
+.contact-page .contact-header p {
+	font-size: 12.5px !important;
+	margin: 3px 0 0 !important;
+}
+
+.contact-page .contact-sparkle {
+	width: 36px !important;
+	height: 36px !important;
+	min-width: 36px !important;
+	font-size: 16px !important;
+	margin-left: 10px !important;
+}
+
+/* ---------- TABLE (smaller) ---------- */
+.contact-page .contact-table-wrapper {
+	padding: 10px 16px 8px !important;
+}
+
+.contact-page .contact-table thead th {
+	padding: 8px 10px !important;
+	font-size: 11.5px !important;
+}
+
+.contact-page .contact-table tbody th, .contact-page .contact-table tbody td
+	{
+	padding: 8px 10px !important;
+	font-size: 12.5px !important;
+}
+
+.contact-page .contact-table tbody td img {
+	width: 30px !important;
+	height: 30px !important;
+	margin-right: 6px;
+}
+
+/* ---------- ACTION BUTTONS (smaller) ---------- */
+.contact-page .contact-delete-btn, .contact-page .contact-update-btn {
+	min-width: 68px !important;
+	padding: 5px 9px !important;
+	font-size: 11px !important;
+}
+
+/* ---------- PAGINATION (tidy + smaller) ---------- */
+.contact-page .pagination {
+	margin: 14px 0 4px !important;
+	justify-content: center !important;
+	gap: 4px;
+}
+
+.contact-page .pagination .page-link {
+	padding: 5px 12px !important;
+	font-size: 12.5px !important;
+	border-radius: 6px !important;
+	background: rgba(255, 255, 255, 0.06) !important;
+	border: 1px solid rgba(255, 255, 255, 0.10) !important;
+	color: #eeeeee !important;
+}
+
+.contact-page .pagination .page-item.active .page-link {
+	background: #0d6efd !important;
+	border-color: #0d6efd !important;
+	color: #ffffff !important;
+}
+
+/* =========================================================
+   TABLET / MOBILE
+   ========================================================= */
+@media ( max-width : 992px) {
+	.contact-page {
+		padding-top: 78px !important;
+	}
+}
+
+@media ( max-width : 576px) {
+	.contact-page {
+		padding-top: 72px !important;
+	}
+	.contact-page .contact-header {
+		padding: 12px !important;
+		min-height: 66px !important;
+	}
+	.contact-page .contact-icon {
+		width: 40px !important;
+		height: 40px !important;
+		min-width: 40px !important;
+		font-size: 17px !important;
+	}
+	.contact-page .contact-header h2 {
+		font-size: 18px !important;
+	}
+	.contact-page .contact-header p {
+		font-size: 10.5px !important;
+	}
+}
+
+/* =========================================================
+   MY CONTACTS — MOBILE CARD LAYOUT (matches reference design)
+   Paste this at the END of your CSS file, replacing the
+   earlier "contact-table-responsive.css" block if you added it.
+   NO HTML CHANGES NEEDED — this uses nth-child, not data-label.
+   Desktop / tablet (>767px) is completely untouched.
+   ========================================================= */
+@media ( max-width : 767.98px) {
+	.contact-page .contact-table-wrapper, .contact-page .contact-table-wrapper .table-responsive
+		{
+		overflow-x: visible !important;
+		overflow-y: visible !important;
+		padding: 10px 12px 6px !important;
+	}
+	.contact-page .contact-table thead {
+		display: none;
+	}
+	.contact-page .contact-table, .contact-page .contact-table tbody {
+		display: block;
+		width: 100% !important;
+		min-width: 0 !important;
+	}
+
+	/* Each row = one card, laid out as a grid */
+	.contact-page .contact-table tbody tr {
+		display: grid !important;
+		grid-template-columns: 24px 1fr;
+		grid-template-areas: "id name" ".  email" ".  phone" "actions actions";
+		row-gap: 6px;
+		column-gap: 10px;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-bottom: 12px;
+		padding: 14px 16px !important;
+		border-radius: 14px !important;
+		border: 1px solid rgba(255, 153, 51, 0.28) !important;
+		background: linear-gradient(135deg, rgba(255, 255, 255, 0.035),
+			rgba(255, 153, 51, 0.025)) !important;
+		box-shadow: none !important;
+		box-sizing: border-box;
+	}
+
+	/* Reset every cell to plain block, no borders/labels */
+	.contact-page .contact-table tbody th, .contact-page .contact-table tbody td
+		{
+		display: block !important;
+		width: auto !important;
+		padding: 0 !important;
+		border: none !important;
+		background: transparent !important;
+		white-space: normal !important;
+	}
+
+	/* ID number - top left, small */
+	.contact-page .contact-table tbody th {
+		grid-area: id;
+		align-self: start;
+		color: #ffffff;
+		font-size: 13px;
+		font-weight: 700;
+		border-radius: 0 !important;
+	}
+
+	/* Avatar + Name row */
+	.contact-page .contact-table tbody td:nth-child(2) {
+		grid-area: name;
+		display: flex !important;
+		align-items: center;
+		gap: 10px;
+		font-size: 14px;
+		font-weight: 700;
+		color: #ffffff;
+	}
+	.contact-page .contact-table tbody td:nth-child(2) img {
+		width: 36px !important;
+		height: 36px !important;
+		flex-shrink: 0;
+	}
+
+	/* Email - directly under name, aligned with it (skips id column) */
+	.contact-page .contact-table tbody td:nth-child(3) {
+		grid-area: email;
+		font-size: 12.5px;
+	}
+	.contact-page .contact-table tbody td:nth-child(3) a {
+		word-break: break-all;
+	}
+
+	/* Phone - under email */
+	.contact-page .contact-table tbody td:nth-child(4) {
+		grid-area: phone;
+		font-size: 12.5px;
+		color: rgba(255, 255, 255, 0.82);
+	}
+
+	/* Actions - full width row at the bottom */
+	.contact-page .contact-table tbody td:nth-child(5) {
+		grid-area: actions;
+		margin-top: 6px;
+	}
+	.contact-page .contact-table tbody td:nth-child(5) .contact-actions {
+		width: 100%;
+		justify-content: flex-end !important;
+		gap: 10px !important;
+	}
+	.contact-page .contact-delete-btn, .contact-page .contact-update-btn {
+		flex: 1;
+		min-width: 0 !important;
+		justify-content: center;
+		padding: 8px 10px !important;
+		font-size: 12px !important;
+	}
+}

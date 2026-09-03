@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -93,7 +94,6 @@ public class CustomerController {
 				return "customer/customer_add_contact";
 			}
 
-			// Getting Username
 			String username = principal.getName();
 
 			User usern = this.userRepository.getUserByEmail(username);
@@ -104,15 +104,18 @@ public class CustomerController {
 			// =========================
 			// IMAGE UPLOADING
 			// =========================
-			
+
+			// Checking Image file is empty
 			if (file.isEmpty()) {
 
-				redirectAttribute.addFlashAttribute("message",
-						new Message("Image Not Uploaded !!", "alert-danger"));
+				redirectAttribute.addFlashAttribute("message", new Message("Image Not Uploaded !!", "alert-danger"));
+				contact.setImage("img/contactgirl.png");
 
 				return "redirect:/customer/addContact";
 
-			} else {
+			}
+			// Continue Process if Image file is not empty
+			else {
 
 				// Set image name
 				contact.setImage(file.getOriginalFilename());
@@ -132,8 +135,6 @@ public class CustomerController {
 
 				// Save image
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-
-				System.out.println("Image Uploaded!");
 			}
 
 			// Save user
@@ -141,9 +142,6 @@ public class CustomerController {
 
 			// Getting UserDetail
 			model.addAttribute("user", usern);
-
-			System.out.println(contact);
-			System.out.println(contact.getNickName());
 
 			redirectAttribute.addFlashAttribute("message", new Message("Successfully Registered !!", "alert-success"));
 
@@ -166,8 +164,9 @@ public class CustomerController {
 		}
 	}
 
+	// Processing View Contact
 	@GetMapping("/viewContact/{page}")
-	public String viewContact(@PathVariable("page") Integer page,Model model, Principal principal) {
+	public String viewContact(@PathVariable("page") Integer page, Model model, Principal principal) {
 
 		String username = principal.getName();
 
@@ -178,8 +177,8 @@ public class CustomerController {
 
 		// Get all contacts of logged-in user
 		// Create Pageable interface for access page request
-		Pageable pageable = PageRequest.of(page, 4);
-		Page<Contact> list = contactRepository.getContactById(user.getId(),pageable);
+		Pageable pageable = PageRequest.of(page, 5);
+		Page<Contact> list = contactRepository.getContactById(user.getId(), pageable);
 
 		for (Contact contact : list) {
 			System.out.println("CID: " + contact.getCid());
@@ -198,5 +197,22 @@ public class CustomerController {
 		model.addAttribute("currentPage", page);
 
 		return "customer/customer_view_contact";
+	}
+
+	// Processing View Single Contact Information
+	@GetMapping("/{cid}/viewContact")
+	public String viewContactDetail(@PathVariable("cid") Integer cid, Model model, Principal principal) {
+
+		String username = principal.getName();
+		User usern = this.userRepository.getUserByEmail(username);
+		model.addAttribute("user", usern);
+
+		Optional<Contact> contactOptional = contactRepository.findById(cid);
+		Contact contact = contactOptional.get();
+
+		model.addAttribute("viewcontactdata", contact);
+
+		return "/customer/customer_showContactDetail";
+
 	}
 }

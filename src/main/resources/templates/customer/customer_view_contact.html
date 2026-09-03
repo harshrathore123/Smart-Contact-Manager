@@ -66,9 +66,21 @@
 
 									<th scope="row" th:text="${c.cid}"></th>
 
-									<td th:text="${c.name}"></td>
+									<td><img th:if="${c.image.startsWith('img/')}"
+										th:src="@{'/' + ${c.image}}" alt=""
+										style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
 
-									<td th:text="${c.email}"></td>
+										<img th:unless="${c.image.startsWith('img/')}"
+										th:src="@{'/uploads/' + ${c.image}}" alt=""
+										style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+
+										<span th:text="${c.name}"></span></td>
+
+									<td><a href=""
+										th:href="@{'/customer/' + ${c.cid} + '/viewContact'}"> <span
+											th:text="${c.email}"></span>
+
+									</a></td>
 
 									<td th:text="${c.phoneNumber}"></td>
 
@@ -99,13 +111,23 @@
 						</table>
 
 						<br />
-						
+
 						<!-- Pagination Layout -->
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
-								<li th:if="${currentPage != 0}" class="page-item"><a class="page-link" th:href="@{'/customer/viewContact/' + ${currentPage-1}}" href="#">Previous</a></li>
-								<li th:classappend="${currentPage == i-1 ? 'active':''}" th:each="i: ${#numbers.sequence(1,totalPage)}" class="page-item"><a class="page-link" th:href="@{'/customer/viewContact/' + ${i-1}}" href="#"><span th:text="${i}"></span></a></li>
-								<li th:if="${currentPage+1 != totalPage}" class="page-item"><a class="page-link" th:href="@{'/customer/viewContact/' + ${currentPage+1}}" href="#">Next</a></li>
+								<li th:if="${currentPage != 0}" class="page-item"><a
+									class="page-link"
+									th:href="@{'/customer/viewContact/' + ${currentPage-1}}"
+									href="#">Previous</a></li>
+								<li th:classappend="${currentPage == i-1 ? 'active':''}"
+									th:each="i: ${#numbers.sequence(1,totalPage)}"
+									class="page-item"><a class="page-link"
+									th:href="@{'/customer/viewContact/' + ${i-1}}" href="#"><span
+										th:text="${i}"></span></a></li>
+								<li th:if="${currentPage+1 != totalPage}" class="page-item"><a
+									class="page-link"
+									th:href="@{'/customer/viewContact/' + ${currentPage+1}}"
+									href="#">Next</a></li>
 							</ul>
 						</nav>
 
