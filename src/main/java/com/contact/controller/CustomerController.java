@@ -1,6 +1,7 @@
 package com.contact.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -200,19 +201,86 @@ public class CustomerController {
 	}
 
 	// Processing View Single Contact Information
+
 	@GetMapping("/{cid}/viewContact")
 	public String viewContactDetail(@PathVariable("cid") Integer cid, Model model, Principal principal) {
 
 		String username = principal.getName();
+
 		User usern = this.userRepository.getUserByEmail(username);
+
 		model.addAttribute("user", usern);
 
 		Optional<Contact> contactOptional = contactRepository.findById(cid);
-		Contact contact = contactOptional.get();
 
-		model.addAttribute("viewcontactdata", contact);
+		if (contactOptional.isPresent()) {
+
+			Contact contact = contactOptional.get();
+
+			// Contact का user null नहीं होना चाहिए
+			if (contact.getUser() != null && usern.getId() == (contact.getUser().getId())) {
+
+				model.addAttribute("viewcontactdata", contact);
+				model.addAttribute("title", contact.getName());
+			}
+		}
 
 		return "customer/customer_showContactDetail";
+	}
 
+	// Delete Contact
+	@GetMapping("/delete/{id}")
+	public String deleteContact(@PathVariable("id") Integer id, Principal principal,
+			RedirectAttributes redirectAttribute) {
+
+		String username = principal.getName();
+
+		User user = this.userRepository.getUserByEmail(username);
+
+		Optional<Contact> contactOptional = this.contactRepository.findById(id);
+
+		if (contactOptional.isPresent()) {
+
+			Contact cont = contactOptional.get();
+
+			// Check contact belongs to logged-in user
+			if (cont.getUser() != null && user.getId() == (cont.getUser().getId())) {
+
+				// =========================
+				// DELETE IMAGE FROM FOLDER
+				// =========================
+
+				String imageName = cont.getImage();
+
+				// Default image delete nahi karna
+				if (imageName != null && !imageName.startsWith("img/")) {
+
+					String uploadDir = System.getProperty("user.dir") + File.separator + "uploads";
+
+					Path imagePath = Paths.get(uploadDir, imageName);
+
+					try {
+						Files.deleteIfExists(imagePath);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+
+				this.contactRepository.delete(cont);
+
+				redirectAttribute.addFlashAttribute("message", new Message("Successfully Deleted !!", "alert-success"));
+
+			} else {
+
+				redirectAttribute.addFlashAttribute("message",
+						new Message("You are not authorized to delete this contact !!", "alert-danger"));
+			}
+
+		} else {
+
+			redirectAttribute.addFlashAttribute("message", new Message("Contact not found !!", "alert-danger"));
+		}
+
+		return "redirect:/customer/viewContact/0";
 	}
 }
