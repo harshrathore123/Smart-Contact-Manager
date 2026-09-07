@@ -9,7 +9,7 @@
 
 		<div class="container py-4">
 
-			<div class="contact-detail-card">
+			<div class="contact-detail-card" th:if="${viewcontactdata}">
 
 				<!-- ================= HEADER ================= -->
 
@@ -200,14 +200,10 @@
 
 						<i class="bi bi-arrow-left"></i> Back to Contacts
 
+					</a> <a th:href="@{/customer/delete/{id}(id=${viewcontactdata.cid})}"
+						class="btn contact-delete-btn"> <i class="bi bi-trash3"></i>
+						Delete
 					</a>
-
-
-					<button type="button" class="btn btn-danger">
-
-						<i class="bi bi-trash3"></i> Delete
-
-					</button>
 
 
 					<button type="button" class="btn btn-success">
@@ -220,6 +216,24 @@
 
 			</div>
 
+			<!-- ================= UNAUTHORIZED USER ================= -->
+
+			<div th:unless="${viewcontactdata}"
+				class="alert alert-danger text-center">
+
+				<h4>
+					<i class="bi bi-exclamation-triangle-fill"></i> Access Denied
+				</h4>
+
+				<p>You are not authorized to view this contact.</p>
+
+				<a th:href="@{/customer/viewContact/0}" class="btn btn-secondary">
+
+					<i class="bi bi-arrow-left"></i> Back to Contacts
+
+				</a>
+
+			</div>
 		</div>
 
 	</section>
